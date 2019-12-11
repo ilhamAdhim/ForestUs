@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel=" stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<style>
+    body,
+    html {
+        background: url('../static/images/img-login2.jpg') no-repeat;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        display: grid;
+        overflow-x: hidden;
+    }
+
+    .google-button {
+        background-color: #DD4B39;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .custom-card {
+        margin: auto;
+        padding: 1em;
+        background-color: rgba(26, 23, 23, 0.678);
+        outline: 5px solid rgba(48, 47, 47, 0.678);
+    }
+
+    .btn-google {
+        background-color: red;
+        color: white;
+    }
+
+    .btn-google:hover {
+        background-color: white;
+        color: red;
+    }
+
+    .btn-anon:hover {
+        background-color: rgba(18, 152, 214, 0.801);
+        color: white;
+    }
+
+    .box {
+        position: absolute;
+        top: 50%;
+        left: 105%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 400px;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        perspective: 2000px;
+        transition: 0.5s;
+    }
+
+    .box:hover {
+        transform: translate(-50%, -50%) rotateY(-30deg) skewY(5deg);
+    }
+
+    .box:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border-top: 20px solid #fff;
+        border-left: 20px solid #fff;
+        box-sizing: border-box;
+    }
+
+    .box:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border-bottom: 20px solid #fff;
+        border-right: 20px solid #fff;
+        box-sizing: border-box;
+    }
+
+    .box .text {
+        position: absolute;
+        top: 30px;
+        left: -30px;
+        background: #262626;
+        width: calc(100% + 60px);
+        height: calc(100% - 60px);
+        transition: 0.5s;
+    }
+
+    .box:hover .text {
+        transform: rotateY(30deg) skewY(-5deg);
+    }
+
+    .text div {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        padding: 40px 80px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .text div h1 {
+        margin: 0 0 20px;
+        padding: 0;
+        color: #fff;
+    }
+
+    .text div p {
+        margin: 0 0 20px;
+        padding: 0;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .fa1,
+    .fa2 {
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        color: #262626;
+        text-align: center;
+        line-height: 80px !important;
+        font-size: 40px !important;
+    }
+
+    .fa .fa1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .fa.fa2 {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+    }
+</style>
+
+<body>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="box">
+                <i class="fa fa-quote-left fa2" aria-hidden="true"></i>
+                <div class="text">
+                    <i class="fa fa-quote-right fa1" aria-hidden="true"></i>
+                    <div>
+
+                        <p>Forests are the lungs of our land, purifying the air and giving fresh strength to our people.
+                        </p>
+
+                        <br>
+                        <p>
+                            — Franklin D. Roosevelt —
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-3 custom-card">
+
+            <a href='/login' style="text-decoration: none">
+                <button class="btn btn-block btn-google">
+
+                    <i class="fa fa-google"></i> Sign up with Google
+                </button>
+            </a>
+
+            <p style="color:white;text-align:center;margin-top: 1em; margin-bottom: 1em">
+                OR
+            </p>
+
+
+            <a href='/Home' style="text-decoration: none">
+                <button class="btn btn-block btn-anon">
+                    Skip for now
+                </button>
+            </a>
+
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,393 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+<script>
+  $(document).ready(function () {
+    checkControls();
+  });
+
+  $('#carouselExampleCaptions').on('slid.bs.carousel', checkControls);
+
+  // Hide left / right control if carousel is at first / last position.
+  function checkControls() {
+    var $this = $('#profilepicsCarousel');
+    $this.children('.carousel-control-prev').toggle(
+      !$this.find('.carousel-inner .carousel-item:first-child').hasClass('active')
+    );
+    $this.children('.carousel-control-next').toggle(
+      !$this.find('.carousel-inner .carousel-item:last-child').hasClass('active')
+    );
+  }
+</script>
+
+
+<style>
+  .carousel-inner .carousel-item {
+    height: 450px;
+  }
+</style>
+{% if post %}
+<div class="container">
+    <div class="row">
+        {% if isDonation %}
+        <div class="col-md-8" style="margin-top: 2em;">
+            {% else %}
+            <div class="col-md-12 grid" style="margin-top: 2em;">
+                {%endif%}
+                <center>
+                    <img src="../{{post.image}}" style="width: 30em;height:20em">
+                    <h1> {{post.title}}</h1>
+                </center>
+
+                <br>
+                <p style="text-align: justify">
+                    {{post._par1}}
+                    <br> <br>
+                    {{post._par2}}
+                    <br> <br>
+                    {{post._par3}}
+                    <br> <br>
+                    {{post._par4}}
+                    <br> <br>
+                    {{post._par5}}
+                    {% if login and isDonation %}
+                    <!-- Click donate to open popup -->
+                    
+                    
+  <center>
+    {% if isDonated  %}
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modelId">
+      Stop Donation
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            Are you sure to stop your donation ? 
+          </div>
+          <div class="align-content-center align-items-center" style="padding:1em;">
+            <button type="button" class="btn btn-primary">Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%elif isDonated == None %}
+    <button style="display: none"></button>
+    {% else %}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Donate
+      </button>
+    
+    {%endif%}
+    
+  </center>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Donation</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body bg-dark text-light">
+
+
+          <div id="carouselExampleCaptions" class="carousel slide " data-interval="false" data-wrap="false"
+            style=" margin-top: 2em;">
+            <div class="carousel-inner">
+              <!-- First slide -->
+              <div class="carousel-item active">
+                <center style="margin-top:-2em;">
+                  <hr style="border-color: white">
+                  <h4>
+                    Amount Details
+                  </h4>
+                  <hr style="border-color: white">
+                </center>
+                <form method="POST" action="{{url_for('donation_receipt')}}">
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <b><label for="currency">Currency</label></b>
+                      <select id="currency" name="currency" class="form-control">
+                        <option selected value="MYR">Choose Currency...</option>
+                        <option value="MYR">MYR</option>
+                        <option value="IDR">IDR</option>
+                        <option value="USD">USD</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <select id="frequent" name="frequent" class="form-control">
+                          <option selected value="6">6 months</option>
+                          <option value="3">3 months</option>
+                          <option value="1">One Time</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <center>
+                      <label class="btn btn-primary col-lg-3">
+                        <input type="radio" name="price" id="price1" value=50> RM 50
+                      </label>
+                      <label class="btn btn-primary col-lg-3">
+                        <input type="radio" name="price" id="price2" value=100> RM 100
+                      </label>
+                      <label class="btn btn-primary col-lg-3">
+                        <input type="radio" name="price" id="price3" value=150> RM 150
+                      </label>
+                    </center>
+                  </div>
+                  <hr style="border-color: white">
+                  <center>
+                    OR
+                  </center>
+                  <hr style="border-color: white">
+                  <div class="form-group">
+
+                    <input type="text" class="form-control" id="price4" name="price"
+                      placeholder="Enter amount manually...">
+                  </div>
+              </div>
+
+              <!-- Second slide -->
+              <div class="carousel-item">
+                <center style="margin-top:-2em;">
+                  <hr style="border-color: white">
+                  <h4>
+                    Personal Information
+                  </h4>
+                  <hr style="border-color: white">
+                </center>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+
+                    <input type="text" name="fname" class="form-control" id="inputFname" placeholder="First name...">
+                  </div>
+                  <div class="form-group col-md-6">
+
+                    <input type="text" name="lname" class="form-control" id="inputLname" placeholder="Last name...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <b><label for="email">Email</label></b>
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <b><label for="project-name">I'm contributing to this project</label></b>
+                  <input class="form-control" type="text" value="{{post.title}}" readonly name="project_name">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <select id="number-codes" class="form-control" name="number_codes">
+                      <option value="+60" selected>+60 (MY)</option>
+                      <option value="+62">+62 (INA)</option>
+                      <option value="+90">+90 (JPN) </option>
+                      <option value="">+ ...</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-8">
+                    <input type="text" class="form-control" name="phone_number" id="phone_number"
+                      placeholder="Phone number...">
+                  </div>
+
+                  <div class="form-group col">
+                    <input type="text" class="form-control" name="nationality" id="nationality"
+                      placeholder="Nationality...">
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Third Slide -->
+              <div class="carousel-item ">
+
+                <center style="margin-top:-2em;">
+                  <hr style="border-color: white">
+                  <h4>
+                    Payment Method
+                  </h4>
+                  <hr style="border-color: white">
+                </center>
+
+                <div class="form-row">
+                  <div class="form-group col">
+                    <select id="payment_method" name="payment_method" class="form-control">
+                      <option selected>Select credit card</option>
+                      <option value="VISA">VISA</option>
+                      <option value="Mastercard">Mastercard</option>
+                      
+                    </select>
+                  </div>
+                  <div class="form-group col">
+
+                    <input type="credit_card" class="form-control" id="credit_card" name="credit_card"
+                      placeholder="Credit / Debit card number...">
+                  </div>
+                </div>
+
+                <hr style="border-color: white">
+                <center>
+                  Credit card expiration
+                </center>
+                <hr style="border-color: white">
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <select id="month" name="month" class="form-control ">
+                      <option selected>MM</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                  </div>
+                  <div class="form-group  col-md-3">
+                    <select id="year" name="year" class="form-control">
+                      <option selected>YYYY</option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="inputCreditCard" placeholder="CVC/CVV/CID...">
+                  </div>
+                </div>
+
+                <input type="submit" class="btn btn-info" value="Submit">
+
+                </form>
+              </div>
+              <center>
+              <a href="#carouselExampleCaptions" role="Read more..." data-slide="prev">
+                <button class="btn btn-info"> Back</button>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a href="#carouselExampleCaptions" role="Read more..." data-slide="next">
+                <button class="btn btn-info"> Next</button>
+                <span class="sr-only">Next</span>
+              </a>
+            </center>
+            </div>
+          </div>
+
+
+        </div>
+
+        <!-- Modal footer -->
+
+
+      </div>
+    </div>
+  </div>
+                    {% endif %}
+                </p>
+
+
+            </div>
+            {% if isDonation %}
+            <div class="col-*-5 grid" style="margin-top: 2em;padding:1em">
+              {% if new_petition != 'none' %}
+              {{post.signed_petition + 1}} has signed! <br> Let's get to 1k !
+              {%else%}
+                {{post.signed_petition}} has signed! <br> Let's get to 1k !
+              {%endif%}
+                <br><br>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info  progress-bar-striped" role="progressbar"
+                        aria-valuenow="64" aria-valuemin="0" aria-valuemax="1000"
+                        style="width: {{post.signed_petition/10}}%">
+                    </div>
+                </div>
+                <br><br>
+              
+                <!-- List of signed petition -->
+                {% if new_petition != 'none' %}
+                <div class="card d-flex flex-row" style="padding:1em">
+                    <div class="flex-fill text-center">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-fill">
+                      You has signed a few moments ago
+                    </div>
+                  </div>
+                    {%endif%}
+
+                {% for each_person in post.user_signed %}
+        
+                <div class="card d-flex flex-row" style="padding:1em">
+                    
+                    <div class="flex-fill text-center">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-fill">
+                        {{each_person.name}} has signed
+
+                        {% if each_person.time_signed < 20 %}
+                        a few moments ago
+
+                        {% elif 20 < each_person.time_signed < 3600 %}
+                        {{m.ceil(each_person.time_signed / 60)}} minutes ago
+
+                        {% else %}
+                        {{m.ceil(each_person.time_signed/3600)}}
+
+                        {%if m.ceil(each_person.time_signed/3600) == 1%}
+                        hour ago
+
+                        {%else%}
+                        hours ago
+
+                        {%endif%}
+                        {%endif%}
+
+                    </div>
+                </div>
+
+                {% endfor %}
+                <!-- End of list of signed petition -->
+                <br><br>
+
+                <form method="POST" action="{{url_for('response_petition',p_id = post.id)}}">
+                    <input type="text" placeholder="First name..." style="width:100%" name="fname"><br>
+                    <input type="text" placeholder="Last name..." style="width:100%" name="lname"><br>
+                    <input type="text" placeholder="Email..." style="width:100%" name="email"><br>
+                    <br>
+                    <center>
+                        <input type="checkbox" name="isAnonymous"> Display Anonymously
+                        <br><br>
+                        <input type="submit" class="btn btn-info" value="Sign petition"> 
+                    </center>
+                </form>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+    <br>
+    {% else %}
+    <p style="font-family: 'Fjalla One', sans-serif; font-size: 40px"> 404 Not Found </p>
+    {% endif %}
+
+
+
+    {% endblock content %}

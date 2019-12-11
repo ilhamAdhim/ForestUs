@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>
+        ForestUs - {{title}}
+    </title>
+</head>
+
+<style>
+    body {
+        overflow-x: hidden;
+    }
+
+    .active {
+
+        color: #edf5e1;
+    }
+
+    .carousel-inner>.active {
+        height: 80%;
+    }
+
+    .prof-picture img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+
+    .dropdown-menu {
+        background-color: #343a40;
+    }
+
+    .dropdown-item {
+        color: rgba(201, 200, 200, 0.925);
+    }
+
+    .dropdown-item:active {
+        background-color: rgba(201, 200, 200, 0.925);
+        color: rgba(48, 47, 47, 0.925);
+    }
+
+    .dropdown-item:hover {
+        color: rgba(48, 47, 47, 0.925);
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">ForestUs</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                {% if title == 'Home' %}
+                <li class="nav-item">
+                    {% else %}
+                <li class="nav-item ">
+                    {%endif%}
+                    {% if title == 'Donation' %}
+                    <a class="nav-link active" href="{{url_for('each_category',category='Donation')}}">Donation</a>
+                    {% else %}
+                    <a class="nav-link" href="{{url_for('each_category',category='Donation')}}">Donation</a>
+                    {%endif%}
+                </li>
+                <li class="nav-item">
+                    {% if title == 'News' %}
+                    <a class="nav-link active" href="{{url_for('each_category',category='news')}}">News</a>
+                    {% else %}
+                    <a class="nav-link" href="{{url_for('each_category',category='news')}}">News</a>
+                    {%endif%}
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" disabled type="text" placeholder="Search...">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        {% if login %}
+        <div class="nav-item dropdown" style="margin-right: 3em">
+            <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <div class="prof-picture active">
+                    <img src="{{current_user.profile_pic}}" alt="">
+                </div>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId" style="float: left">
+                <a class="dropdown-item" href="/myProfile">My profile</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+        </div>
+        {%else%}
+        <div class="nav-item dropdown" style="margin-right: 3em">
+            <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size:2em;"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId" style="float: left;font-size:.8em">
+                <a class="dropdown-item" href="/login">Login with Google</a>
+            </div>
+        </div>
+        {% endif %}
+    </nav>
+
+
+    {% block content %}{% endblock %}
+
+
+
+    <div class="col-lg-3">
+
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark text-white pt-4" style="margin-top: 2em;">
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+
+            <!-- Footer links -->
+            <div class="row text-center text-md-left mt-3 pb-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Forest Us</h6>
+                    <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+                        consectetur
+                        adipisicing elit.</p>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+                    <p>
+                        <a href="#!" style="cursor: not-allowed;">Donation</a>
+                    </p>
+                    <p>
+                        <a href="#!" style="cursor: not-allowed;">News</a>
+                    </p>
+                    <p>
+                        <a href="#!" style="cursor: not-allowed;">Recycled Items</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+                    <p>
+                        <a href="#!" style="cursor: not-allowed;">Your Account</a>
+                    </p>
+                    <p>
+                        <a href="#!" style="cursor: not-allowed;">Become an Affiliate</a>
+                    </p>
+
+                    <p>
+                        <a href="#!" style="cursor: not-allowed;">Help</a>
+                    </p>
+                </div>
+
+                <!-- Grid column -->
+                <hr class="w-100 clearfix d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                    <p>
+                        <i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+                    <p>
+                        <i class="fa fa-envelope mr-3"></i> info@gmail.com</p>
+                    <p>
+                        <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+                    <p>
+                        <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Footer links -->
+
+            <hr>
+
+            <!-- Grid row -->
+            <div class="row d-flex align-items-center">
+
+                <!-- Grid column -->
+                <div class="col-md-7 col-lg-8">
+
+                    <!--Copyright-->
+                    <p class="text-center text-md-left">© 2018 Copyright:
+                        <a href="/">
+                            <strong> ForestUs.com</strong>
+                        </a>
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-5 col-lg-4 ml-lg-0">
+
+                    <!-- Social buttons -->
+                    <div class="text-center text-md-right">
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fas fa-google-plus-g"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fas fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+    </footer>
+    <!-- Footer -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

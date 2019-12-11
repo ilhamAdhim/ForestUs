@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+{%block content%}
+
+<div class="container" style="margin-top: 2em">
+    <div class="alert-success card" style="padding:1em;margin-bottom: 1em;">
+        We have sent your invoice to {{data.email}}
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Invoice
+            <strong> {{time}} </strong>
+            <span class="float-right"> <strong>Status:</strong> Completed</span>
+
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <div>
+                        <strong>{{data.fname}} {{data.lname}}</strong>
+                    </div>
+                    <div>Nationality : {{data.nationality}}</div>
+                    <div>Email: {{data.email}}</div>
+                    <div>Phone: {{data.number_codes}} {{data.phone_number}}</div>
+                    <div>Will be charged from {{data.credit_card}} for {{data.frequent}} months </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="table-responsive-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="center"></th>
+                            <th>Project</th>
+                            <th class="right">Donation</th>
+                            <th class="right">Duration</th>
+                            <th class="center">Qty</th>
+                            <th class="right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="center">1</td>
+                            <td class="left strong">{{data.project_name}}</td>
+                            <td class="left">
+                                {% if data.currency == "MYR" %}
+                                RM
+                                {%elif data.currency == "IDR"%}
+                                IDR
+                                {% elif data.currency == "USD"%}
+                                USD
+                                {% else %}
+                                hehe
+                                {%endif%}
+
+
+                                {{data.price}} </td>
+                            <td class="right"> {{data.frequent}} months </td>
+                            <td class="center">1</td>
+                            <td class="right">
+                                {% if data.currency == "MYR" %}
+                                RM
+                                {%elif data.currency == "IDR"%}
+                                IDR
+                                {% elif data.currency == "USD"%}
+                                USD
+                                {% else %}
+                                hehe
+                                {%endif%}
+
+
+                                {{total}}</td>
+                        </tr>
+                        <tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="align-content-center" style="margin-top:2em;margin-bottom: 2em;">
+    <center>
+        <a href="/myProfile">
+            <button class="btn btn-info"> Go to my Profile</button>
+        </a>
+    </center>
+</div>
+
+
+
+{%endblock content%}

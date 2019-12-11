@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container" style="margin-top: 2em;">
+    {%for post in lists%}
+
+    <div class="card" style="margin-top: 1em;">
+        <div class="row no-gutters">
+            <div class="card-header border-0">
+                {%if post.image %}
+                <img src="../{{post.image}}" class="img-fluid" alt="" width="300px" height="300px">
+                {%else %}
+                <img src="//placehold.it/200" class="img-fluid" alt="" width="300px" height="300px">
+                {% endif%}
+            </div>
+            <div class="col">
+                <div class="card-block px-2 bg-light">
+                    <h4 class="card-title text-left" style="margin-left: 1em">{{post.title}}</h4>
+                    <!-- Take first 30 words to be displayed here -->
+                    {%set list_of_par1 = post._par1.split()%}
+                    <p class="card-text text-left" style="margin-left: 1em">{{' '.join(list_of_par1[:35])}} ...</p>
+                    <br><br>
+                    <center>
+                        <a href="{{ url_for('each_post',
+                        new_petition = 'none' ,isDonation = True if category == 'Donation' else False ,p_id = post.id , isDonated = 'False')}}"
+                            style="text-decoration: none;font-family: 'Rubik', sans-serif;margin-bottom: 1em;margin-left: 1em"
+                            class=" btn btn-primary">Read
+                            more...</a>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {%endfor%}
+</div>
+
+{% endblock content %}
