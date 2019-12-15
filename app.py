@@ -70,7 +70,6 @@ def load_user(user_id):
 
 # Index endpoint
 @app.route("/")
-@app.route("/login")
 def index():
     if current_user.is_authenticated:
         highlight_news = news[:3]

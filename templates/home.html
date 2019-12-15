@@ -29,7 +29,7 @@
             style="background-color:rgba(22, 22, 22, 0.842);color: white;height:500px; margin-top: 2em;box-shadow: 2em 1em;display:grid; border-radius: 2%;">
             <p style="margin : auto; text-align: justify;">
                 <center>
-                    <h2> Support Our Forests</h2>
+                    <h2 class="text-white"> Support Our Forests</h2>
                 </center>
                 Wildfires, invasive insects, and overuse have left millions of acres in urgent need of restoration— and
                 your gift helps to plant trees, restore watersheds, and protect crucial habitats.
@@ -53,7 +53,7 @@
                         <img class="d-block w-100 img-fluid" alt="First slide"
                             src="../static/images/deforestation2.jpeg" data-holder-rendered="true" height=500px>
                         <div class="carousel-caption">
-                            <h5>What's happening</h5>
+                            <h5 class="text-white">What's happening</h5>
                             <p> In the past 25 years, forests shrank by 502,000 square miles <br>
                                 (1.3 million square km)
                             </p>
@@ -63,7 +63,7 @@
                         <img class="d-block w-100 img-fluid" alt="Second slide"
                             src="../static/images/reforestation.jpeg" data-holder-rendered="true" height=500px>
                         <div class="carousel-caption">
-                            <h5>What we can do</h5>
+                            <h5 class="text-white">What we can do</h5>
                             <p>It's time for us to save the world. <br> Let's join our community and make our world a
                                 better
                                 place </p>
@@ -73,7 +73,7 @@
                         <img class="d-block w-100 img-fluid" alt="Third slide" src="../static/images//animal.jpg"
                             data-holder-rendered="true" height=500px>
                         <div class="carousel-caption">
-                            <h5>Our future</h5>
+                            <h5 class="text-white">Our future</h5>
                             <p>Our actions will create a world that our next generation can enjoy the world full of
                                 natural beauty</p>
                         </div>
@@ -121,7 +121,7 @@
                         <br><br>
                         <a href="{{ url_for('each_post', isDonation = False ,p_id = news.id , isDonated = False, new_petition = 'none') }}"
                             style="text-decoration: none;font-family: 'Rubik', sans-serif;margin-bottom: 1em;margin-left: 1em"
-                            class=" btn btn-primary">Read
+                            class=" button">Read
                             more...</a>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                         <br><br>
                         <a href="{{ url_for('each_post', isDonation = True ,p_id = donation_post.id, isDonated = False, new_petition = 'none')}}"
                             style="text-decoration: none;font-family: 'Rubik', sans-serif;margin-bottom: 1em;margin-left: 1em"
-                            class="btn btn-primary">Read
+                            class="button">Read
                             more...</a>
                     </div>
                 </div>
