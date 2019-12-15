@@ -29,166 +29,179 @@
     .col-md .card:hover {
 
         transform: scale(1.05);
+
     }
 </style>
 
 
-
 <!-- Personal information  -->
-</div>
 <div class="container" style="margin-top: 2em;">
-    <div class="row">
-        <div class="photo col-sm-4">
-            <center>
-                <img src="{{user.profile_pic}}" class="img-fluid rounded-circle" alt="profile_photo" width="250px"
-                    height=250px>
-                <br><br>
-            </center>
-        </div>
-        <div class="col-sm-7">
-            <div class="row">
-                <div class="col-sm-2 name">
-                    <center>
-                        {{user.name}}
-                    </center>
-                </div>
-            </div>
+    <div class="col-xl-12 col-md-6 col-sm-10 mx-auto">
 
-
-            <div class="card">
-                <div class="card-footer">
-                    Email : {{user.email}}
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-footer">
-                    Age : {{user.age}}
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-footer">
-                    Nationality : {{user.nationality}}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-1"></div>
-        <!-- End of first row -->
-    </div>
-
-
-
-    <!-- Projects Contributed -->
-    <center>
-        <hr>
-        <h1 style="background-color: rgba(0, 128, 0, 0.808);color:white; padding:.5em;width:100%;"> Projects
-            Contributed
-        </h1>
-        <hr>
-    </center>
-    {% if anyContributed %}
-    <!-- Put card section here -->
-    <div class="container" style="margin-top: 2em;">
-        <div class="row">
-            {% for contributed in contributed_list %}
-            <div class="col-md" style="margin-top: 1.5em;display: inline-block">
-                <a href="{{ url_for('each_post', isDonation = True ,p_id = contributed.id ,
-                 isDonated = True, new_petition = 'none') }}"
-                    style="text-decoration: none;font-family: 'Rubik', sans-serif;color:black">
-                    <div class="card">
-                        {%if contributed.image %}
-                        <img src="../{{contributed.image}}" class="img-fluid" alt="" width="100%" height="300px">
-                        {%else %}
-                        <img src="//placehold.it/200" class="img-fluid" alt="" width="300px" height="300px">
-                        {% endif%}
-                        <div class="card-body">
-                            <h5 class="card-title">{{contributed.title}}</h5>
-                            <hr>
-                            {%set list_of_par1 = contributed._par1.split()%}
-                            <p class="card-text">{{' '.join(list_of_par1[:25])}} <br> RM 500 </p>
-                        </div>
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 bg-dark">
+                <div class="media align-items-end profile-header" style="transform: translateY(6em) ;">
+                    <div class="profile mr-3"><img src="{{user.profile_pic}}" alt="..." width="130"
+                            class="rounded mb-2 img-thumbnail"><a style="cursor: not-allowed; href=" #"
+                            class="btn btn-dark btn-sm btn-block">Edit
+                            profile</a></div>
+                    <div class="media-body mb-5 text-dark" style="transform: translateY(2em)">
+                        <h4 class="mt-0 mb-0" style="color: white">{{user.name}}</h4>
+                        <br>
+                        <p class="mt-0 mb-4"> <i class="fa fa-map-marker mr-2"></i>{{user.nationality}}</p>
                     </div>
-                </a>
+                </div>
             </div>
-            <br>
-            {% endfor %}
-        </div>
-    </div>
-    {% else %}
-    <br><br>
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item" style="margin-right: 2em;">
+                        <h5 class="font-weight-bold mb-0 d-block">241</h5><small class="text-muted"> <i
+                                class="ti-check-box mr-1"></i>Projects</small>
+                    </li>
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">
+                            84K</h5><small class="text-muted">
 
-    <div class="container">
-        <div class="col text-center bg-dark text-light" style="padding: 5em">
-            Start contributing on
-            <a href="{{url_for('each_category',category='Donation')}}">
-                ForestUs !
-            </a>
-        </div>
-    </div>
+                            <i class="fa fa-dollar-sign" aria-hidden="true"></i> Donated
+                        </small>
+                    </li>
+                </ul>
+            </div>
 
-    <br><br>
-    {%endif%}
+            <!-- Projects Contributed -->
+            <div class="container" style="margin-top: 2em;">
+                <center>
+                    <hr>
+                    <h1 style="background-color: rgba(0, 128, 0, 0.808);color:white; padding:.5em;width:100%;"> Projects
+                        Contributed</h1>
+                    <hr>
+                </center>
+                {% if anyContributed %}
+                <!-- Put card section here -->
+                <div class="container" style="margin-top: 2em;">
+                    <div class="row">
+                        {% for contributed in contributed_list %}
+                        <div class="col-md" style="margin-top: 1.5em;display: inline-block">
+                            <div class="single-recent-blog-post">
+                                <div class="thumb" style="height:300px">
+                                    {%if contributed.image %}
+                                    <img src="../{{contributed.image}}" class="img-fluid" alt="" width="100%"
+                                        height="300px">
+                                    {%else %}
+                                    <img src="//placehold.it/200" class="img-fluid" alt="" width="300px" height="300px">
+                                    {% endif%}
+                                    <ul class="thumb-info" style="width:50%">
+                                        <li><a href="#"><i class="fa fa-money"></i>RM 350</a></li>
+                                        <li><a href="#"><i class="ti-notepad"></i>January 12,2019</a></li>
 
-    <div class="col-md-1"></div>
-
-    <!-- Projects contributing -->
-    <div class="container" style="margin-top: 2em">
-        <center>
-            <hr>
-            <h1 style="background-color: rgba(0, 128, 0, 0.808);color:white; padding:.5em;width:100%;"> Projects
-                Contributing</h1>
-            <hr>
-        </center>
-
-        {% if anyContributing %}
-        <!-- Put card section here -->
-        <div class="container" style="margin-top: 2em;">
-            <div class="row">
-                {% for contributing in contributing_list %}
-                <div class="col-md" style="margin-top: 1.5em;display: inline-block">
-                    <a href="{{ url_for('each_post', isDonation = True ,p_id = contributing.id,
-                     isDonated = True, new_petition = 'none')}}"
-                        style="text-decoration: none;font-family: 'Rubik', sans-serif;color:black">
-                        <div class="card">
-                            {%if contributing.image %}
-                            <img src="../{{contributing.image}}" class="img-fluid" alt="" width="100%" height="300px">
-                            {%else %}
-                            <img src="//placehold.it/200" class="img-fluid" alt="" width="300px" height="300px">
-                            {% endif%}
-                            <div class="card-body">
-                                <h5 class="card-title">{{contributing.title}}</h5>
-                                <hr>
-                                {%set list_of_par1 = contributing._par1.split()%}
-
-                                <p class="card-text">{{' '.join(list_of_par1[:25])}} <br> RM 500 </p>
+                                    </ul>
+                                </div>
+                                <div class="details mt-20" style="height: 230px;">
+                                    <a href="{{ url_for('each_post', isDonation = True ,p_id = contributed.id ,
+                             isDonated = True, new_petition = 'none') }}">
+                                        <h3> {{contributed.title}} </h3>
+                                    </a>
+                                    {%set list_of_par1 = contributed._par1.split()%}
+                                    <p>{{' '.join(list_of_par1[:30])}} </p>
+                                    <a class="button" href="{{ url_for('each_post', isDonation = True ,p_id = contributed.id ,
+                             isDonated = True, new_petition = 'none') }}"> Read More <i class="ti-arrow-right"></i></a>
+                                </div>
                             </div>
+
                         </div>
+                        <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <br><br>
+
+            <div class="container">
+                <div class="col text-center bg-dark text-light" style="padding: 5em">
+                    Start contributing on
+                    <a href="{{url_for('each_category',category='Donation')}}">
+                        ForestUs !
                     </a>
                 </div>
+            </div>
+
+            <br><br>
+            {%endif%}
+
+            <div class="col-md-1"></div>
+
+            <!-- Projects contributing -->
+            <div class="container" style="margin-top: 2em">
+                <center>
+                    <hr>
+                    <h1 style="background-color: rgba(0, 128, 0, 0.808);color:white; padding:.5em;width:100%;"> Projects
+                        Contributing</h1>
+                    <hr>
+                </center>
                 <br>
-                {% endfor %}
+
+                {% if anyContributing %}
+                <!-- Put card section here -->
+                <div class="container" style="margin-top: 2em;">
+                    <div class="row">
+                        {% for contributing in contributing_list %}
+                        <div class="col-md" style="margin-top: 1.5em;display: inline-block">
+                            <div class="single-recent-blog-post">
+                                <div class="thumb" style="height:300px">
+                                    {%if contributing.image %}
+                                    <img src="../{{contributing.image}}" class="img-fluid" alt="" width="100%">
+                                    {%else %}
+                                    <img src="//placehold.it/200" class="img-fluid" alt="" width="300px" height="300px">
+                                    {% endif%}
+                                    <ul class="thumb-info" style="width:50%;">
+                                        <li class="font-size:.5em;"><a href="#"><i class="ti-notepad"></i>January
+                                                12,2019</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="details mt-20" style="height: 230px;">
+                                    <a href="{{ url_for('each_post', isDonation = True ,p_id = contributing.id ,
+                                 isDonated = True, new_petition = 'none') }}">
+                                        <h3> {{contributing.title}} </h3>
+                                    </a>
+
+
+                                    {%set list_of_par1 = contributing._par1.split()%}
+                                    <p>{{' '.join(list_of_par1[:25])}} </p>
+                                    <a class="button" href="{{ url_for('each_post', isDonation = True ,p_id = contributing.id ,
+                                 isDonated = True, new_petition = 'none') }}"> Read More <i
+                                            class="ti-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% else %}
+                <br><br>
+
+                <div class="container">
+                    <div class="col text-center bg-dark text-light" style="padding: 5em">
+                        Start contributing on
+                        <a href="{{url_for('each_category',category='Donation')}}">
+                            ForestUs !
+                        </a>
+                    </div>
+                </div>
+
+                <br><br>
+                {%endif%}
+                <div class="col-md-1"></div>
+                <div class="col-md-1"></div>
             </div>
         </div>
-
-        {% else %}
-        <br><br>
-
-        <div class="container">
-            <div class="col text-center bg-dark text-light" style="padding: 5em">
-                Start contributing on
-                <a href="{{url_for('each_category',category='Donation')}}">
-                    ForestUs !
-                </a>
-            </div>
-        </div>
-
-        <br><br>
-        {%endif%}
-        <div class="col-md-1"></div>
-        <div class="col-md-1"></div>
     </div>
-</div>
 
 </div>
 {% endblock content %}
