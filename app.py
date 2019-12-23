@@ -74,14 +74,7 @@ def index():
     if current_user.is_authenticated:
         highlight_news = news[:3]
         highlight_donation = donation[:3]
-        # return (
-        #     "<p>Hello, {}! You're logged in! Email: {}</p>"
-        #     "<div><p>Google Profile Picture:</p>"
-        #     '<img src="{}" alt="Google profile pic"></img></div>'
-        #     '<a class="button" href="/logout">Logout</a>'.format(
-        #         current_user.name, current_user.email, current_user.profile_pic
-        #     )
-        # )
+        
         return render_template('home.html'
         , current_user=current_user
         , login=True if current_user.is_authenticated else False
@@ -209,9 +202,7 @@ def myProfile():
 
         user_contributing = donation[:3]
         user_contributed = donation[3:5]
-    # elif current_user.email is "ilhamavab3l@gmail.com":
-    #     user_contributing = donation[:2]
-    #     user_contributed = donation[2:4]
+    
     else:
         user_contributing = None
         user_contributed = None
@@ -288,4 +279,3 @@ def each_category(category):
 
 if __name__ == "__main__":
     app.run(debug=True, ssl_context='adhoc')
-

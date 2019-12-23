@@ -204,20 +204,20 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
 
-                    <input type="text" name="fname" class="form-control" id="inputFname" placeholder="First name...">
+                    <input required type="text" name="fname" class="form-control" id="inputFname" placeholder="First name...">
                   </div>
                   <div class="form-group col-md-6">
 
-                    <input type="text" name="lname" class="form-control" id="inputLname" placeholder="Last name...">
+                    <input required type="text" name="lname" class="form-control" id="inputLname" placeholder="Last name...">
                   </div>
                 </div>
                 <div class="form-group">
                   <b><label for="email">Email</label></b>
-                  <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                  <input required type="text" class="form-control" name="email" id="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                   <b><label for="project-name">I'm contributing to this project</label></b>
-                  <input class="form-control" type="text" value="{{post.title}}" readonly name="project_name">
+                  <input required class="form-control" type="text" value="{{post.title}}" readonly name="project_name">
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-4">
@@ -230,12 +230,12 @@
                   </div>
 
                   <div class="form-group col-md-8">
-                    <input type="text" class="form-control" name="phone_number" id="phone_number"
+                    <input required type="text" class="form-control" name="phone_number" id="phone_number"
                       placeholder="Phone number...">
                   </div>
 
                   <div class="form-group col">
-                    <input type="text" class="form-control" name="nationality" id="nationality"
+                    <input required type="text" class="form-control" name="nationality" id="nationality"
                       placeholder="Nationality...">
                   </div>
                 </div>
@@ -244,7 +244,6 @@
 
               <!-- Third Slide -->
               <div class="carousel-item ">
-
                 <center style="margin-top:-2em;">
                   <hr style="border-color: white">
                   <h4>
@@ -264,7 +263,7 @@
                   </div>
                   <div class="form-group col">
 
-                    <input type="credit_card" class="form-control" id="credit_card" name="credit_card"
+                    <input required type="credit_card" class="form-control" id="credit_card" name="credit_card"
                       placeholder="Credit / Debit card number...">
                   </div>
                 </div>
@@ -303,11 +302,11 @@
                     </select>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="inputCreditCard" placeholder="CVC/CVV/CID...">
+                    <input required type="text" class="form-control" id="inputCreditCard" placeholder="CVC/CVV/CID...">
                   </div>
                 </div>
 
-                <input type="submit" class="btn btn-info" value="Submit">
+                <input required type="submit" class="btn btn-info" value="Submit">
 
                 </form>
               </div>
@@ -402,14 +401,14 @@
                 <br><br>
 
                 <form method="POST" action="{{url_for('response_petition',p_id = post.id)}}">
-                    <input type="text" placeholder="First name..." style="width:100%" name="fname"><br>
-                    <input type="text" placeholder="Last name..." style="width:100%" name="lname"><br>
-                    <input type="text" placeholder="Email..." style="width:100%" name="email"><br>
+                    <input required type="text" placeholder="First name..." style="width:100%" name="fname"><br>
+                    <input required type="text" placeholder="Last name..." style="width:100%" name="lname"><br>
+                    <input required type="text" placeholder="Email..." style="width:100%" name="email"><br>
                     <br>
                     <center>
-                        <input type="checkbox" name="isAnonymous"> Display Anonymously
+                        <input required type="checkbox" name="isAnonymous"> Display Anonymously
                         <br><br>
-                        <input type="submit" class="btn btn-info" value="Sign petition"> 
+                        <input required type="submit" class="btn btn-info" value="Sign petition"> 
                     </center>
                 </form>
             </div>
