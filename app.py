@@ -34,14 +34,6 @@ from user import User
 # GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 # GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
 
-# Naive config
-GOOGLE_CLIENT_ID = "730511995699-p169sp9bm67106l525tq9us7e0vj0t56.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "HRAlXTZ2muE4wglXRTkQ-4om"
-GOOGLE_DISCOVERY_URL = (
-    "https://accounts.google.com/.well-known/openid-configuration"
-)
-
-
 # Flask app setup
 app = Flask(__name__)
 # os.environ.get("SECRET_KEY") or
